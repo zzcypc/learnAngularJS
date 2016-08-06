@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script type="text/javascript" src="js/angular.js" ></script>
+		<style>
+			.errorinfo{
+				color: red;
+			}
+		</style>
+	</head>
+	<body>
+		<form ng-app="myForm" name="myform" ng-controller="validate">
+			<p>
+				用户名<input type="text" ng-model="userName" name="username" required/>
+				<span class="errorinfo" ng-if="myform.username.$dirty && myform.username.$invalid" ng-show="myform.username.$error.required">{{usernameinfo}}</span>
+			</p>
+			<p>
+				邮箱<input type="text" ng-model="userEmail" name="useremail" required/>
+				<span class="errorinfo"ng-show="myform.useremail.$error.required">{{emailinfo}}</span>
+			</p>
+			<p>
+				<button>提交</button>
+			</p>
+		</form>
+	</body>
+	<script>
+		var app=angular.module('myForm',[]);
+		app.controller('validate',function($scope){
+			$scope.usernameinfo='请输入用户名';
+			$scope.emailinfo='请输入邮箱';
+			//$scope.userName='zongzi';
+			$scope.userEmail='zongzi@hz.com';
+		});
+	</script>
+</html>

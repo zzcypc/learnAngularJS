@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script type="text/javascript" src="js/angular.js"></script>
+		<script type="text/javascript" src="js/angular-route.js"></script>
+		<link rel="stylesheet" href="css/bootstrap.min.css" />
+		<link rel="stylesheet" href="css/spa.css" />
+		<script type="text/javascript" src="js/spa.js"></script>
+	</head>
+
+	<body ng-app="myapp">
+		<div class="container">
+			<ul class="" id="menu">
+				<a href="#/register">
+					<li>注册</li>
+				</a>
+				<a href="#/login">
+					<li>登录</li>
+				</a>
+				<a href="#/info">
+					<li>获取用户信息</li>
+				</a>
+			</ul>
+			<div class="myform" ng-view></div>
+		</div>
+	</body>
+	<script type="text/ng-template" id="register.html">
+		<form name="loginForm" novalidate>
+			<input class="form-control" type="email" name="email" ng-model="user.email" required/>
+			<p class="errorinfo" ng-if="loginForm.email.$dirty" ng-show="loginForm.email.$error.required">请输入邮箱</p>
+			<p class="errorinfo" loginForm.email.$dirty&&loginForm.email.$invalid" ng-show="loginForm.email.$error.email">非法的邮箱</p>
+			<input class="form-control" type="password" name="password" ng-model="user.password" required/>
+			<p class="errorinfo" ng-if="loginForm.password.$dirty" ng-show="loginForm.password.$error.required">请输入密码</p>
+			<button class="btn btn-primary" ng-click='btnRegister()' ng-disabled="(loginForm.email.$invalid)||(loginForm.password.$error.required)">注册</button>
+		</form>
+		<span>{{resInfo}}</span>
+	</script>
+	<script type="text/ng-template" id="login.html">
+		<form name="loginForm" novalidate>
+			<input class="form-control" type="email" name="email" ng-model="user.email" required/>
+			<p class="errorinfo" ng-if="loginForm.email.$dirty" ng-show="loginForm.email.$error.required">请输入邮箱</p>
+			<p class="errorinfo" loginForm.email.$dirty&&loginForm.email.$invalid" ng-show="loginForm.email.$error.email">非法的邮箱</p>
+			<input class="form-control" type="password" name="password" ng-model="user.password" required/>
+			<p class="errorinfo" ng-if="loginForm.password.$dirty" ng-show="loginForm.password.$error.required">请输入密码</p>
+			<button class="btn btn-primary" ng-click='btnLogin()' ng-disabled="(oginForm.email.$invalid)||(loginForm.password.$invalid)">登录</button>
+		</form>
+		<span>{{resInfo}}</span>
+	</script>
+
+	<script type="text/ng-template" id="info.html">
+		<button class="btn btn-success" ng-click="btnInfo()">获取用户信息</button>
+		<span ng-if="resInfo"><pre>{{resInfo}}</pre></span>
+	</script>
+
+</html>

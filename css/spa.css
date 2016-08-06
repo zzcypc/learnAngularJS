@@ -1,0 +1,14 @@
+#menu{
+	list-style: none;
+}
+#menu li{
+	display: inline-block;
+	margin-left: 10px;
+}
+.myform{
+	width: 500px;
+	margin: 0 auto;
+}
+.errorinfo{
+	color: red;
+}
